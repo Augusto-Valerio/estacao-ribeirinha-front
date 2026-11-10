@@ -1,7 +1,7 @@
 import { ArrowDownRight } from '@phosphor-icons/react/ArrowDownRight'
 import { ArrowRight } from '@phosphor-icons/react/ArrowRight'
 import { ArrowUpRight } from '@phosphor-icons/react/ArrowUpRight'
-import type { Reading, ReadingTrend } from '../../../types/station'
+import type { Reading, ReadingTrend } from '../../../types/reading'
 import { RequestStateMessage } from './RequestStateMessage'
 import styles from '../stationOverview.module.css'
 
