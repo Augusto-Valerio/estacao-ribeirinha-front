@@ -1,4 +1,6 @@
 import { lazy, Suspense } from 'react'
+import { CommunityNotices } from '../features/notices/components/CommunityNotices'
+import { useActiveNotices } from '../features/notices/hooks/useActiveNotices'
 import { useReadingHistory } from '../features/readings/hooks/useReadingHistory'
 import { LatestReading } from '../features/stations/components/LatestReading'
 import { RequestStateMessage } from '../features/stations/components/RequestStateMessage'
@@ -30,6 +32,11 @@ export function OverviewPage() {
     status: readingHistoryStatus,
     retry: retryReadingHistory,
   } = useReadingHistory(selectedStationId)
+  const {
+    notices: activeNotices,
+    status: activeNoticesStatus,
+    retry: retryActiveNotices,
+  } = useActiveNotices(selectedStationId)
 
   const isStationsLoading = stationsStatus === 'idle' || stationsStatus === 'loading'
 
@@ -74,25 +81,40 @@ export function OverviewPage() {
             latestReading={latestReading}
             isReadingLoading={readingStatus === 'loading'}
           />
-          <LatestReading
-            reading={latestReading}
-            status={readingStatus}
-            onRetry={retryReading}
-          />
-          <Suspense
-            fallback={
-              <div className={styles.readingState} role="status">
-                <strong>Preparando o gráfico...</strong>
-                <p>Carregando a visualização do histórico.</p>
-              </div>
-            }
-          >
-            <WaterLevelChart
-              readings={readingHistory}
-              status={readingHistoryStatus}
-              onRetry={retryReadingHistory}
-            />
-          </Suspense>
+          <div className={styles.monitoringGrid}>
+            <div className={styles.latestRegion}>
+              <LatestReading
+                reading={latestReading}
+                status={readingStatus}
+                onRetry={retryReading}
+              />
+            </div>
+
+            <aside className={styles.noticesColumn}>
+              <CommunityNotices
+                notices={activeNotices}
+                status={activeNoticesStatus}
+                onRetry={retryActiveNotices}
+              />
+            </aside>
+
+            <div className={styles.historyRegion}>
+              <Suspense
+                fallback={
+                  <div className={styles.readingState} role="status">
+                    <strong>Preparando o gráfico...</strong>
+                    <p>Carregando a visualização do histórico.</p>
+                  </div>
+                }
+              >
+                <WaterLevelChart
+                  readings={readingHistory}
+                  status={readingHistoryStatus}
+                  onRetry={retryReadingHistory}
+                />
+              </Suspense>
+            </div>
+          </div>
         </>
       ) : null}
     </section>
