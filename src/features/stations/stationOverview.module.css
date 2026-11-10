@@ -172,6 +172,31 @@
   grid-template-columns: minmax(20rem, 0.95fr) minmax(18rem, 1.05fr);
 }
 
+.monitoringGrid {
+  display: grid;
+  grid-template-areas:
+    'latest notices'
+    'history notices';
+  grid-template-columns: minmax(0, 2fr) minmax(20rem, 0.92fr);
+}
+
+.latestRegion {
+  min-width: 0;
+  grid-area: latest;
+}
+
+.historyRegion {
+  min-width: 0;
+  grid-area: history;
+}
+
+.noticesColumn {
+  min-width: 0;
+  padding: var(--space-10) 0 var(--space-12) var(--space-8);
+  border-left: 1px solid var(--color-border-strong);
+  grid-area: notices;
+}
+
 .levelReading {
   padding-right: var(--space-10);
 }
@@ -329,6 +354,20 @@
 
   .stationStatus {
     padding-left: 0;
+    border-left: 0;
+  }
+
+  .monitoringGrid {
+    grid-template-areas:
+      'latest'
+      'notices'
+      'history';
+    grid-template-columns: 1fr;
+  }
+
+  .noticesColumn {
+    padding: var(--space-8) 0;
+    border-top: 1px solid var(--color-border);
     border-left: 0;
   }
 }
