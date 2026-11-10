@@ -1,5 +1,6 @@
 import { ApiError, getJson } from './apiClient'
-import type { Reading, Station } from '../types/station'
+import type { Reading } from '../types/reading'
+import type { Station } from '../types/station'
 
 export function listStations(signal?: AbortSignal) {
   return getJson<Station[]>('/estacoes', signal)

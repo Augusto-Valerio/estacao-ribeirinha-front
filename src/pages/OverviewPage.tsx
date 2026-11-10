@@ -1,9 +1,17 @@
+import { lazy, Suspense } from 'react'
+import { useReadingHistory } from '../features/readings/hooks/useReadingHistory'
 import { LatestReading } from '../features/stations/components/LatestReading'
 import { RequestStateMessage } from '../features/stations/components/RequestStateMessage'
 import { StationSelector } from '../features/stations/components/StationSelector'
 import { StationSummary } from '../features/stations/components/StationSummary'
 import { useStationOverview } from '../features/stations/hooks/useStationOverview'
 import styles from '../features/stations/stationOverview.module.css'
+
+const WaterLevelChart = lazy(() =>
+  import('../features/readings/components/WaterLevelChart').then((module) => ({
+    default: module.WaterLevelChart,
+  })),
+)
 
 export function OverviewPage() {
   const {
@@ -17,6 +25,11 @@ export function OverviewPage() {
     retryStations,
     retryReading,
   } = useStationOverview()
+  const {
+    readings: readingHistory,
+    status: readingHistoryStatus,
+    retry: retryReadingHistory,
+  } = useReadingHistory(selectedStationId)
 
   const isStationsLoading = stationsStatus === 'idle' || stationsStatus === 'loading'
 
@@ -66,6 +79,20 @@ export function OverviewPage() {
             status={readingStatus}
             onRetry={retryReading}
           />
+          <Suspense
+            fallback={
+              <div className={styles.readingState} role="status">
+                <strong>Preparando o gráfico...</strong>
+                <p>Carregando a visualização do histórico.</p>
+              </div>
+            }
+          >
+            <WaterLevelChart
+              readings={readingHistory}
+              status={readingHistoryStatus}
+              onRetry={retryReadingHistory}
+            />
+          </Suspense>
         </>
       ) : null}
     </section>

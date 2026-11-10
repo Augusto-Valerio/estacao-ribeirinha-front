@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { getLatestReading, listStations } from '../../../services/stationService'
-import type { Reading, Station } from '../../../types/station'
+import type { Reading } from '../../../types/reading'
+import type { Station } from '../../../types/station'
 
 type RequestStatus = 'idle' | 'loading' | 'success' | 'error'
 

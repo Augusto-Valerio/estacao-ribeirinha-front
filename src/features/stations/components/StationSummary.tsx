@@ -1,6 +1,7 @@
 import { BatteryHigh } from '@phosphor-icons/react/BatteryHigh'
 import { MapPin } from '@phosphor-icons/react/MapPin'
-import type { Reading, Station, StationStatus } from '../../../types/station'
+import type { Reading } from '../../../types/reading'
+import type { Station, StationStatus } from '../../../types/station'
 import styles from '../stationOverview.module.css'
 
 const statusLabels: Record<StationStatus, string> = {
