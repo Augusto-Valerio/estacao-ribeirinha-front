@@ -37,6 +37,8 @@ type WaterLevelChartProps = {
   readings: Reading[]
   status: ReadingHistoryStatus
   onRetry: () => void
+  scope?: 'last24Hours' | 'all'
+  wide?: boolean
 }
 
 function getLast24Hours(readings: Reading[]) {
@@ -77,16 +79,30 @@ function ChartTooltip({ active, payload }: TooltipContentProps<ValueType, NameTy
   )
 }
 
-export function WaterLevelChart({ readings, status, onRetry }: WaterLevelChartProps) {
-  const recentReadings = getLast24Hours(readings)
-  const chartData = recentReadings.map(toChartPoint)
+export function WaterLevelChart({
+  readings,
+  status,
+  onRetry,
+  scope = 'last24Hours',
+  wide = false,
+}: WaterLevelChartProps) {
+  const visibleReadings = scope === 'all' ? readings : getLast24Hours(readings)
+  const chartData = visibleReadings.map(toChartPoint)
   const hasSingleReading = chartData.length === 1
+  const isCompleteHistory = scope === 'all'
+  const periodLabel = isCompleteHistory ? 'Todas as leituras registradas' : 'Últimas 24 horas'
+  const periodDescription = isCompleteHistory ? 'no histórico completo' : 'nas últimas 24 horas'
 
   return (
-    <section className={styles.historySection} aria-labelledby="water-level-history-title">
+    <section
+      className={`${styles.historySection} ${wide ? styles.historySectionWide : ''}`}
+      aria-labelledby="water-level-history-title"
+    >
       <header className={styles.heading}>
-        <h2 id="water-level-history-title">Histórico do nível do rio</h2>
-        <p>Últimas 24 horas</p>
+        <h2 id="water-level-history-title">
+          {isCompleteHistory ? 'Evolução do nível do rio' : 'Histórico do nível do rio'}
+        </h2>
+        <p>{periodLabel}</p>
       </header>
 
       {status === 'idle' || status === 'loading' ? (
@@ -108,7 +124,9 @@ export function WaterLevelChart({ readings, status, onRetry }: WaterLevelChartPr
 
       {status === 'success' && chartData.length === 0 ? (
         <div className={styles.stateMessage}>
-          <strong>Nenhuma leitura nas últimas 24 horas</strong>
+          <strong>
+            {isCompleteHistory ? 'Nenhuma leitura registrada' : 'Nenhuma leitura nas últimas 24 horas'}
+          </strong>
           <p>O gráfico será exibido quando a estação receber uma nova leitura.</p>
         </div>
       ) : null}
@@ -128,7 +146,7 @@ export function WaterLevelChart({ readings, status, onRetry }: WaterLevelChartPr
               data={chartData}
               margin={{ top: 12, right: 18, bottom: 8, left: 8 }}
               role="img"
-              aria-label={`Gráfico com ${chartData.length} ${chartData.length === 1 ? 'leitura' : 'leituras'} do nível do rio nas últimas 24 horas`}
+              aria-label={`Gráfico com ${chartData.length} ${chartData.length === 1 ? 'leitura' : 'leituras'} do nível do rio ${periodDescription}`}
               style={{ width: '100%', height: '100%' }}
             >
               <CartesianGrid stroke="#d8dee7" strokeDasharray="2 2" vertical={false} />
@@ -136,7 +154,11 @@ export function WaterLevelChart({ readings, status, onRetry }: WaterLevelChartPr
                 dataKey="timestamp"
                 type="number"
                 domain={['dataMin', 'dataMax']}
-                tickFormatter={(timestamp: number) => axisFormatter.format(new Date(timestamp))}
+                tickFormatter={(timestamp: number) =>
+                  isCompleteHistory
+                    ? dateTimeFormatter.format(new Date(timestamp)).replace('.', '')
+                    : axisFormatter.format(new Date(timestamp))
+                }
                 tick={{ fill: '#526071', fontSize: 14 }}
                 tickLine={false}
                 axisLine={{ stroke: '#aeb8c5' }}
@@ -177,7 +199,7 @@ export function WaterLevelChart({ readings, status, onRetry }: WaterLevelChartPr
           </div>
 
           <table className={styles.accessibleTable}>
-            <caption>Leituras do nível do rio nas últimas 24 horas</caption>
+            <caption>Leituras do nível do rio {periodDescription}</caption>
             <thead>
               <tr>
                 <th scope="col">Data e hora</th>
