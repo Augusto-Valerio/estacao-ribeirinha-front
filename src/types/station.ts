@@ -8,3 +8,5 @@ export type Station = {
   uf: string
   status: StationStatus
 }
+
+export type StationInput = Omit<Station, 'idEstacao'>
