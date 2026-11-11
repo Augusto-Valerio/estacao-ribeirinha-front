@@ -49,25 +49,6 @@
   border-bottom-color: var(--color-primary-700);
 }
 
-.pendingSection {
-  display: flex;
-  min-height: 18rem;
-  padding: var(--space-10) 0;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.pendingSection strong {
-  color: var(--color-primary-900);
-  font-size: 1.375rem;
-}
-
-.pendingSection p {
-  margin: var(--space-2) 0 0;
-  color: var(--color-text-muted);
-  font-size: 1.0625rem;
-}
-
 @media (max-width: 48rem) {
   .page {
     padding-top: var(--space-8);
