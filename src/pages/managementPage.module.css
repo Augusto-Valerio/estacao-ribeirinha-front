@@ -1,0 +1,65 @@
+.page {
+  padding-top: var(--space-10);
+}
+
+.pageHeading {
+  padding-bottom: var(--space-7);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.pageHeading h1 {
+  margin: 0;
+  color: var(--color-primary-900);
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.pageHeading p {
+  margin: var(--space-2) 0 0;
+  color: var(--color-text-muted);
+  font-size: 1.0625rem;
+}
+
+.tabs {
+  display: flex;
+  padding-top: var(--space-6);
+  border-bottom: 1px solid var(--color-border-strong);
+  gap: var(--space-7);
+}
+
+.tabs button {
+  min-height: 3rem;
+  padding: 0 var(--space-1);
+  color: var(--color-text-muted);
+  background: transparent;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+.tabs button:hover {
+  color: var(--color-primary-800);
+}
+
+.tabs button[aria-selected='true'] {
+  color: var(--color-primary-900);
+  border-bottom-color: var(--color-primary-700);
+}
+
+@media (max-width: 48rem) {
+  .page {
+    padding-top: var(--space-8);
+  }
+
+  .pageHeading {
+    padding-bottom: var(--space-6);
+  }
+
+  .tabs {
+    overflow-x: auto;
+    gap: var(--space-6);
+  }
+}
