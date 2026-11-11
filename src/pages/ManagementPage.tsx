@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { NoticeManagement } from '../features/management/components/NoticeManagement'
 import { ReadingManagement } from '../features/management/components/ReadingManagement'
 import { StationManagement } from '../features/management/components/StationManagement'
 import styles from './managementPage.module.css'
@@ -47,12 +48,7 @@ export function ManagementPage() {
       >
         {activeSection === 'stations' ? <StationManagement /> : null}
         {activeSection === 'readings' ? <ReadingManagement /> : null}
-        {activeSection === 'notices' ? (
-          <div className={styles.pendingSection}>
-            <strong>Gestão de avisos</strong>
-            <p>Este fluxo será conectado à API no checkpoint seguinte.</p>
-          </div>
-        ) : null}
+        {activeSection === 'notices' ? <NoticeManagement /> : null}
       </div>
     </section>
   )

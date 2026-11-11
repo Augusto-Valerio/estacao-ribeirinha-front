@@ -11,3 +11,5 @@ export type Notice = {
   status: NoticeStatus
   dataHora: string
 }
+
+export type NoticeInput = Omit<Notice, 'idAviso'>
