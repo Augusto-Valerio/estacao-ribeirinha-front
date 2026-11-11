@@ -5,7 +5,7 @@ municípios e comunidades ribeirinhas. O projeto apresenta níveis da água,
 tendências, bateria dos equipamentos e avisos comunitários, além de oferecer a
 gestão completa dos dados disponibilizados pela API.
 
-Este repositório contém somente o front-end. O backend está disponível em
+Este repositório contém somente o front-end. O back-end está disponível em
 [estacao-ribeirinha-api](https://github.com/Augusto-Valerio/estacao-ribeirinha-api).
 
 **Aplicação publicada:**
@@ -51,7 +51,7 @@ Principais recursos utilizados:
 | `/avisos` | cadastrar, atualizar e excluir |
 
 O serviço gratuito do Render pode levar alguns segundos para responder ao
-primeiro acesso depois de um período sem uso.
+primeiro acesso após um período sem uso.
 
 ## Executar localmente
 
@@ -120,7 +120,7 @@ Os commits seguem Conventional Commits, por exemplo:
 ```text
 feat: implementar crud de avisos
 fix: ajustar leitura do status em telas pequenas
-docs: documentar execucao local do frontend
+docs: documentar execução local do frontend
 chore: integrar crud de avisos na develop
 ```
 
@@ -133,7 +133,7 @@ versionada em `render.yaml` e usa:
 - build: `npm ci && npm run build`;
 - diretório publicado: `dist`;
 - variável de build: `VITE_API_BASE_URL`;
-- rewrite `/*` para `/index.html`, necessário para as rotas do React Router;
+- regra de reescrita de `/*` para `/index.html`, necessária para as rotas do React Router;
 - cache de longa duração somente para os arquivos versionados de `assets`.
 
 O Blueprint acompanha o `render.yaml` pela `develop`, enquanto o site estático

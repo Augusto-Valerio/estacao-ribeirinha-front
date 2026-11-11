@@ -1,76 +1,79 @@
-# Design QA — checkpoint 11
+# QA de design — checkpoint 11
 
-- Design-system source: `C:\Users\Admin\.codex\generated_images\01a1be91-54e9-7892-9008-60f43fad2cca\exec-2e04ded1-6dd3-4790-afc5-cbd3d8ed9399.png`
-- Desktop implementation: `C:\Users\Admin\AppData\Local\Temp\estacao-ribeirinha-checkpoint-11-desktop.png`
-- Mobile implementation: `C:\Users\Admin\AppData\Local\Temp\estacao-ribeirinha-checkpoint-11-mobile-final.png`
-- Side-by-side comparison: `C:\Users\Admin\AppData\Local\Temp\estacao-ribeirinha-checkpoint-11-comparison.png`
-- Source pixels: 1487 × 1058
-- Desktop CSS viewport: 1440 × 900; implementation pixels: 1425 × 1239
-- Mobile CSS viewport: 390 × 844; implementation pixels: 375 × 2007
-- Density normalization: device scale 1; source and desktop implementation shown together in the combined comparison
-- State: overview route, Estacao Arara Azul, original production-like sample data
+- Fonte do sistema de design: `C:\Users\Admin\.codex\generated_images\01a1be91-54e9-7892-9008-60f43fad2cca\exec-2e04ded1-6dd3-4790-afc5-cbd3d8ed9399.png`
+- Implementação para computador: `C:\Users\Admin\AppData\Local\Temp\estacao-ribeirinha-checkpoint-11-desktop.png`
+- Implementação para celular: `C:\Users\Admin\AppData\Local\Temp\estacao-ribeirinha-checkpoint-11-mobile-final.png`
+- Comparação lado a lado: `C:\Users\Admin\AppData\Local\Temp\estacao-ribeirinha-checkpoint-11-comparison.png`
+- Dimensões da referência: 1487 × 1058 pixels
+- Área de visualização no computador: 1440 × 900; implementação: 1425 × 1239 pixels
+- Área de visualização no celular: 390 × 844; implementação: 375 × 2007 pixels
+- Normalização de densidade: escala de dispositivo igual a 1; referência e implementação para computador reunidas na comparação
+- Estado: rota da visão geral, Estação Arara Azul e dados demonstrativos semelhantes aos de produção
 
-## Scope and source relationship
+## Escopo e relação com a referência
 
-This checkpoint applies product-wide finishing to the complete frontend. The
-demonstrative-monitoring notice from the approved reference is now part of the
-shared layout, while the 404 route and keyboard tab behavior complete important
-navigation states without changing the established visual language.
+Este checkpoint aplica o acabamento final a todo o front-end. O aviso de
+monitoramento demonstrativo da referência aprovada passou a integrar o layout
+compartilhado. A rota 404 e a navegação por teclado entre abas completam estados
+importantes de navegação sem alterar a linguagem visual estabelecida.
 
-## Full-view comparison
+## Comparação da visualização completa
 
-- The overview keeps the approved hierarchy: institutional header, station
-  selector, operational summary, latest reading, notices and history.
-- The new footer notice follows the reference's compact information band but
-  uses a solid surface and left rule consistent with the coded design system.
-- The desktop composition remains intentionally open, with dividers rather than
-  nested cards.
-- The 404 page uses the same typography, spacing, color and button treatment as
-  the functional routes.
+- A visão geral mantém a hierarquia aprovada: cabeçalho institucional, seletor
+  de estação, resumo operacional, última leitura, avisos e histórico.
+- O aviso no rodapé segue a faixa compacta de informação da referência, mas usa
+  uma superfície sólida e uma borda à esquerda coerentes com o sistema de design.
+- A composição para computador permanece intencionalmente aberta, com divisores
+  no lugar de cartões aninhados.
+- A página 404 utiliza a mesma tipografia, o mesmo espaçamento e o mesmo tratamento
+  de cores e botões das rotas funcionais.
 
-## Responsive evidence
+## Evidências de responsividade
 
-- Desktop was checked at 1440 × 900.
-- Mobile was checked at 390 × 844 with `scrollWidth` equal to `clientWidth`
-  (390 px), proving no horizontal page overflow.
-- The safety notice wraps into a readable compact block on mobile.
-- Header navigation retains the existing accessible menu behavior.
+- A versão para computador foi verificada em 1440 × 900.
+- A versão para celular foi verificada em 390 × 844, com `scrollWidth` igual a
+  `clientWidth` (390 pixels), o que comprova a ausência de rolagem horizontal.
+- O aviso de segurança ocupa um bloco compacto e legível no celular.
+- A navegação do cabeçalho mantém o comportamento acessível do menu existente.
 
-## Accessibility and navigation evidence
+## Evidências de acessibilidade e navegação
 
-- A direct unknown URL renders a semantic “Página não encontrada” heading,
-  explanatory copy and a link back to the overview.
-- The shared footer communicates that the product is demonstrative and directs
-  emergencies to official municipal channels.
-- Management tabs respond to Arrow Left/Right, Home and End. Pressing Arrow
-  Right on Estações selected and focused Leituras.
-- Skip link, visible focus styles, semantic headings and reduced-motion support
-  remain present.
-- A fresh browser tab produced zero console errors.
+- Uma URL desconhecida exibe o título semântico “Página não encontrada”, um texto
+  explicativo e um link de retorno à visão geral.
+- O rodapé compartilhado informa que o produto é demonstrativo e direciona
+  situações de emergência aos canais oficiais do município.
+- As abas de gestão respondem às teclas de seta para a esquerda e para a direita,
+  além de `Home` e `End`. Ao pressionar a seta para a direita em “Estações”, a aba
+  “Leituras” foi selecionada e recebeu foco.
+- O link de salto, os estilos de foco visíveis, os títulos semânticos e o suporte
+  à redução de movimento permanecem presentes.
+- Uma nova aba do navegador não apresentou erros no console.
 
-## Documentation and maintenance evidence
+## Evidências de documentação e manutenção
 
-- The Vite template README was replaced by project-specific documentation in
-  Portuguese: scope, features, stack, API, setup, environment, scripts,
-  structure, design direction, Git flow and deployment requirements.
-- Obsolete placeholder-page components were removed.
-- `npm run lint`, `npm run build` and `git diff --check` passed.
+- O README original do Vite foi substituído pela documentação específica do
+  projeto em português: escopo, funcionalidades, tecnologias, API, configuração,
+  ambiente, scripts, estrutura, direção visual, fluxo Git e requisitos de deploy.
+- Os componentes obsoletos da página provisória foram removidos.
+- `npm run lint`, `npm run build` e `git diff --check` foram executados com sucesso.
 
-## Above-the-fold copy diff
+## Comparação dos textos visíveis sem rolagem
 
-The overview copy remains unchanged. The new safety notice is intentionally
-visible at the end of every route and avoids any claim of official status.
+O texto da visão geral permanece inalterado. O novo aviso de segurança aparece
+intencionalmente no final de todas as rotas e evita qualquer alegação de caráter
+oficial.
 
-## Findings
+## Constatações
 
-No actionable P0, P1 or P2 mismatch remains within the checkpoint scope. A
-custom brand mark remains optional P3 polish and should only be introduced after
-its own visual approval.
+Não restam divergências P0, P1 ou P2 que exijam ação dentro do escopo deste
+checkpoint. Uma marca gráfica personalizada permanece como acabamento P3
+opcional e só deve ser introduzida após aprovação visual própria.
 
-## Follow-up polish
+## Acabamentos posteriores
 
-- Choose the hosting platform and configure SPA rewrites/environment variables.
-- Run final deployed-origin CORS and route-refresh tests.
-- Decide whether to create a custom brand mark and favicon.
+- Escolher a plataforma de hospedagem e configurar as regras de reescrita da SPA
+  e as variáveis de ambiente.
+- Executar os testes finais de CORS e de recarregamento de rotas na origem publicada.
+- Decidir se será criada uma marca gráfica personalizada.
 
-final result: passed
+Resultado final: aprovado.
