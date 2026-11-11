@@ -8,6 +8,9 @@ gestão completa dos dados disponibilizados pela API.
 Este repositório contém somente o front-end. O backend está disponível em
 [estacao-ribeirinha-api](https://github.com/Augusto-Valerio/estacao-ribeirinha-api).
 
+**Aplicação publicada:**
+[estacao-ribeirinha-front.onrender.com](https://estacao-ribeirinha-front.onrender.com)
+
 ## Funcionalidades
 
 - visão geral da estação selecionada, última leitura e situação operacional;
@@ -126,15 +129,15 @@ chore: integrar crud de avisos na develop
 O front-end é publicado como **Render Static Site**. A configuração está
 versionada em `render.yaml` e usa:
 
-- branch de validação: `develop`;
+- branch de produção: `main`;
 - build: `npm ci && npm run build`;
 - diretório publicado: `dist`;
 - variável de build: `VITE_API_BASE_URL`;
 - rewrite `/*` para `/index.html`, necessário para as rotas do React Router;
 - cache de longa duração somente para os arquivos versionados de `assets`.
 
-Depois da validação da URL pública, o mesmo commit será promovido para `main` e
-essa passará a ser a branch de produção.
+O Blueprint acompanha o `render.yaml` pela `develop`, enquanto o site estático
+publica os arquivos da branch estável `main`.
 
 ## Autor
 
