@@ -123,15 +123,18 @@ chore: integrar crud de avisos na develop
 
 ## Deploy
 
-O projeto gera arquivos estáticos na pasta `dist` com `npm run build`. A
-plataforma escolhida deverá:
+O front-end é publicado como **Render Static Site**. A configuração está
+versionada em `render.yaml` e usa:
 
-- definir `VITE_API_BASE_URL` durante o build;
-- publicar a pasta `dist`;
-- redirecionar rotas da SPA para `index.html`.
+- branch de validação: `develop`;
+- build: `npm ci && npm run build`;
+- diretório publicado: `dist`;
+- variável de build: `VITE_API_BASE_URL`;
+- rewrite `/*` para `/index.html`, necessário para as rotas do React Router;
+- cache de longa duração somente para os arquivos versionados de `assets`.
 
-A publicação será configurada em um checkpoint próprio depois da escolha entre
-Vercel e um serviço de site estático equivalente.
+Depois da validação da URL pública, o mesmo commit será promovido para `main` e
+essa passará a ser a branch de produção.
 
 ## Autor
 
