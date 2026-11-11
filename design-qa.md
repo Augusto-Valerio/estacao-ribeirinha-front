@@ -1,98 +1,98 @@
-# Design QA — checkpoint 6
+# Design QA — checkpoint 7
 
 - Design-system source: `C:\Users\Admin\.codex\generated_images\01a1be91-54e9-7892-9008-60f43fad2cca\exec-2e04ded1-6dd3-4790-afc5-cbd3d8ed9399.png`
-- Desktop implementation: `C:\Users\Admin\AppData\Local\Temp\estacao-ribeirinha-checkpoint-6-history-1440.png`
-- Mobile implementation: `C:\Users\Admin\AppData\Local\Temp\estacao-ribeirinha-checkpoint-6-history-mobile.png`
-- Side-by-side comparison: `C:\Users\Admin\AppData\Local\Temp\estacao-ribeirinha-checkpoint-6-history-comparison.png`
-- Desktop CSS viewport: 1440 × 1024; document client width: 1425 px
-- Desktop implementation pixels: 1425 × 1270
-- Mobile CSS viewport: 390 × 844; document client width: 375 px
-- Mobile implementation pixels: 375 × 1603
-- Density normalization: device scale 1; source and desktop implementation scaled to 720 px wide in the combined comparison
-- State: Histórico route, Estacao Arara Azul selected, API data loaded
+- Desktop implementation: `C:\Users\Admin\AppData\Local\Temp\estacao-ribeirinha-checkpoint-7-notices-1440.png`
+- Mobile implementation: `C:\Users\Admin\AppData\Local\Temp\estacao-ribeirinha-checkpoint-7-notices-mobile.png`
+- Side-by-side comparison: `C:\Users\Admin\AppData\Local\Temp\estacao-ribeirinha-checkpoint-7-notices-comparison.png`
+- Source pixels: 1487 × 1058
+- Desktop CSS viewport: 1440 × 1024; implementation pixels: 1440 × 1025
+- Mobile CSS viewport: 390 × 844; implementation pixels: 375 × 1221
+- Density normalization: device scale 1; full source and implementation shown together in the combined comparison
+- Desktop state: Avisos route, Estacao Arara Azul selected, all filters, API data loaded
+- Mobile state: Avisos route, Estacao Jandaira selected, critical active notice loaded
 
 ## Scope and source relationship
 
-The approved image defines the product's visual system and overview composition;
-it does not contain a separate history-page mock. This checkpoint extends the
-same system without introducing another visual language: open white surfaces,
-horizontal information bands, Source Sans 3, restrained blue and green tokens,
-thin dividers, compact radii and data-first hierarchy.
+The approved image defines the product's visual system and the notice-card
+treatment on the overview. It does not contain a dedicated archive page. This
+checkpoint extends the same system with the minimum functional controls needed
+to consult active and ended notices without introducing another visual
+language.
 
-The page consumes all readings from
-`GET /leituras/estacao/{idEstacao}`, updates when the station changes and
-shows the station summary, complete chart and detailed reading list.
+The page consumes `GET /avisos/estacao/{idEstacao}`, updates when the station
+changes and filters the returned records locally by status and level.
 
 ## Full-view comparison
 
-- Header, navigation, title scale, selector geometry and station-summary band
-  remain consistent with the approved overview.
-- The chart preserves the same axis, grid, blue mark and open-surface treatment,
-  expanded to the full width appropriate for a dedicated data page.
-- The detailed history uses a table instead of generic cards, keeping the
-  government-service information density and alignment.
-- The current API has one reading per station, so the chart contains one real
-  point and a factual explanation rather than invented historical data.
-- Mobile replaces the table header with explicit row labels while preserving
-  the semantic HTML table for assistive technology.
+- Header, navigation, title scale, station selector and horizontal divider
+  cadence remain consistent with the approved overview.
+- Notice level hierarchy reuses the approved informative, attention and
+  critical semantics; ended notices are deliberately neutralized so they are
+  not mistaken for current alerts.
+- The dedicated page uses open information bands, two compact native filters
+  and a two-column desktop list instead of adding dashboard cards or decorative
+  containers.
+- Real API counts appear as an inline summary, not as invented metrics.
+- The mobile version collapses to one column, keeps filters full-width and
+  preserves readable notice metadata without horizontal overflow.
 
 ## Required fidelity surfaces
 
-- Fonts and typography: Source Sans 3, existing weights, title scale, table
-  hierarchy and compact labels match the established product system.
-- Spacing and layout rhythm: the title, selector, station summary, chart and
-  table follow the existing gutters and divider cadence with no nested cards.
-- Colors and tokens: primary blue, neutral grid lines, green active/trend states
-  and pale table header use existing tokens; no gradient or glass treatment was
-  added.
+- Fonts and typography: Source Sans 3, established weights, heading scale,
+  control typography and notice hierarchy match the product system.
+- Spacing and layout rhythm: page gutters, title band, archive heading, filter
+  band, results line and notice list follow the reference's divider cadence and
+  open white surface.
+- Colors and tokens: primary blue, neutral borders and semantic green, amber
+  and red states reuse existing tokens; no gradient, glass or decorative glow
+  was added.
 - Image and asset quality: no raster assets were introduced. Existing Phosphor
-  station and battery icons are reused without substitutions.
-- Copy and content: static labels describe the complete history accurately;
-  station names and every measurement come from the public API.
+  navigation and notice icons are reused with consistent weight and size.
+- Copy and content: static labels describe the real query and filters; station,
+  notice, status, level, message and publication time come from the public API.
 
 ## Focused comparison
 
-The dedicated table is new functional content not present in the overview
-source. It was reviewed directly at desktop and mobile sizes for header weight,
-column alignment, row rhythm, trend treatment, label clarity and wrapping.
+The notice cards were compared directly with the approved attention card. Icon
+placement, compact rectangular labels, border weight, heading hierarchy and
+publication metadata stay within the established component family.
 
 ## Responsive and interaction evidence
 
-- Desktop checked at 1440 × 1024 without horizontal overflow.
-- Mobile checked at 390 × 844 with `scrollWidth` equal to the 375-pixel client
-  width.
-- Switching from station 1 to station 4 updated station identity, battery,
-  chart, date, 122.1 cm value and descending trend.
-- Returning to station 1 restored the 145.5 cm, rising-trend and 82% battery
-  record.
-- Chart and visible table expose the same API reading.
-- Mobile table presents Data e hora, Nível do rio, Tendência and Bateria as a
-  readable labeled record.
-- Browser console checked with no warnings or errors.
+- Desktop checked at 1440 × 1024.
+- Mobile checked at 390 × 844 with `scrollWidth` equal to the client width and
+  no horizontal overflow.
+- Status and level filters returned the correct visible result counts.
+- A filter combination with no result showed its explicit empty state, and
+  Limpar filtros restored both controls to Todos.
+- Estacao Horizonte showed the no-notices state.
+- Estacao Jandaira showed its active critical notice and semantic red
+  treatment.
+- The final mobile pass kept level and status labels on one horizontal row,
+  matching the approved notice anatomy.
+- Returning to the overview preserved its active notice card after the shared
+  card refactor.
+- Browser console checked without application errors.
 - `npm run lint` and `npm run build` passed before the final visual review.
 
 ## Accessibility evidence
 
-- Page, chart and table regions have programmatic headings.
-- Native select, semantic table headers, `time` values and visible data labels
-  remain keyboard and screen-reader accessible.
-- Trend is conveyed by text in addition to color.
-- Loading, API failure, no-station and no-reading states are present.
-- The chart retains its accessibility layer and hidden data table.
+- Page and archive regions have programmatic headings.
+- Native labelled selects remain keyboard and screen-reader accessible.
+- Notice level and status are conveyed by text and icon in addition to color.
+- Counts use a semantic description list, notices use a semantic list, and
+  publication values use `time` elements.
+- Loading, API failure, no-station, no-notice and no-filter-result states are
+  present.
+- Mobile controls retain practical tap targets and visible focus styles come
+  from the shared global CSS.
 
 ## Above-the-fold copy diff
 
-Navigation and product identity remain unchanged. The new page title,
-description and complete-history labels are intentional route-specific copy.
-No unapproved badges, promotional text or decorative labels were introduced.
-
-## Comparison history
-
-1. The initial desktop implementation had no actionable P0 or P1 issue.
-2. The first mobile capture showed the trend label stretching across its data
-   cell. This P2 responsive mismatch was fixed with content-sized alignment.
-3. The final mobile capture measured the trend badge at approximately 83 px,
-   confirmed the compact treatment and showed no overflow.
+Product identity and navigation remain unchanged. The route title, factual
+description, archive heading and filter labels are intentional functional copy.
+No promotional text, decorative eyebrow, fake badge or unsupported official
+claim was introduced.
 
 ## Findings
 
@@ -100,9 +100,9 @@ No actionable P0, P1 or P2 mismatch remains within the checkpoint scope.
 
 ## Follow-up polish
 
-- Multiple API readings will naturally produce a line and additional table rows.
-- Date-range filtering can be considered later if the backend dataset grows
-  enough to require it; no unsupported filter was invented now.
-- The final brand symbol and demonstrative-monitoring disclaimer remain pending.
+- The final brand symbol and demonstrative-monitoring disclaimer remain pending
+  as application-wide finishing work.
+- A denser pagination strategy can be considered only if the API later returns
+  a volume that makes it necessary.
 
 final result: passed
