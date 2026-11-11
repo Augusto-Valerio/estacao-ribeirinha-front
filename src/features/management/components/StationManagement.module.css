@@ -236,6 +236,30 @@
   background: #feecea;
 }
 
+.trendSUBINDO {
+  color: var(--color-green-700);
+  background: #e7f5eb;
+}
+
+.trendESTAVEL {
+  color: var(--color-primary-800);
+  background: var(--color-primary-100);
+}
+
+.trendDESCENDO {
+  color: #4b5563;
+  background: #e5e7eb;
+}
+
+.formHint {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-primary-900);
+  background: var(--color-primary-050);
+  border-left: 3px solid var(--color-primary-700);
+  line-height: 1.5;
+}
+
 .rowActions {
   display: flex;
   gap: var(--space-2);

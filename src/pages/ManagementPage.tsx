@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { ReadingManagement } from '../features/management/components/ReadingManagement'
 import { StationManagement } from '../features/management/components/StationManagement'
 import styles from './managementPage.module.css'
 
@@ -45,12 +46,7 @@ export function ManagementPage() {
         aria-labelledby={`${activeSection}-tab`}
       >
         {activeSection === 'stations' ? <StationManagement /> : null}
-        {activeSection === 'readings' ? (
-          <div className={styles.pendingSection}>
-            <strong>Gestão de leituras</strong>
-            <p>Este fluxo será conectado à API no próximo checkpoint.</p>
-          </div>
-        ) : null}
+        {activeSection === 'readings' ? <ReadingManagement /> : null}
         {activeSection === 'notices' ? (
           <div className={styles.pendingSection}>
             <strong>Gestão de avisos</strong>
