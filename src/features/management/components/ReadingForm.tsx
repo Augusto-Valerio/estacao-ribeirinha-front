@@ -131,12 +131,14 @@ export function ReadingForm({
             min="0"
             max="100"
             step="1"
+            aria-describedby="battery-percentage-help"
             required
             disabled={submitting}
             onChange={(event) =>
               setValues({ ...values, percentualBateria: event.target.value })
             }
           />
+          <span id="battery-percentage-help">Carga registrada nesta leitura.</span>
         </div>
 
         <div className={styles.fieldWide}>
