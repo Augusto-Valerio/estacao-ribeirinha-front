@@ -55,7 +55,8 @@ primeiro acesso após um período sem uso.
 
 ## Executar localmente
 
-Pré-requisitos: Git, npm e uma versão do Node.js compatível com o Vite 8.
+Pré-requisitos: Git, npm e Node.js 20.19 ou uma versão 22.12 ou superior,
+compatível com o Vite 8.
 
 ```powershell
 git clone https://github.com/Augusto-Valerio/estacao-ribeirinha-front.git
