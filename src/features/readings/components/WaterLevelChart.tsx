@@ -42,16 +42,14 @@ type WaterLevelChartProps = {
 }
 
 function getLast24Hours(readings: Reading[]) {
-  const latestReading = readings.at(-1)
-  const latestTimestamp = latestReading ? new Date(latestReading.dataHora).getTime() : Number.NaN
+  const periodEnd = Date.now()
+  const periodStart = periodEnd - 24 * 60 * 60 * 1000
 
-  if (!Number.isFinite(latestTimestamp)) {
-    return []
-  }
+  return readings.filter((reading) => {
+    const timestamp = new Date(reading.dataHora).getTime()
 
-  const periodStart = latestTimestamp - 24 * 60 * 60 * 1000
-
-  return readings.filter((reading) => new Date(reading.dataHora).getTime() >= periodStart)
+    return Number.isFinite(timestamp) && timestamp >= periodStart && timestamp <= periodEnd
+  })
 }
 
 function toChartPoint(reading: Reading): ChartPoint {

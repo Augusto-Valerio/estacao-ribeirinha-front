@@ -123,7 +123,7 @@ export function ReadingForm({
         </div>
 
         <div>
-          <label htmlFor="battery-percentage">Bateria (%)</label>
+          <label htmlFor="battery-percentage">Bateria da estação (%)</label>
           <input
             id="battery-percentage"
             type="number"
