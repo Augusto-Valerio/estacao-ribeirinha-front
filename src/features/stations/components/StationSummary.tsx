@@ -47,7 +47,7 @@ export function StationSummary({
       <div className={styles.batteryStatus}>
         <BatteryHigh aria-hidden="true" weight="regular" />
         <div>
-          <span>Bateria</span>
+          <span>Bateria na última leitura</span>
           <strong>
             {isReadingLoading
               ? 'Carregando'
